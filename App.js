@@ -1,20 +1,62 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import React, { useState } from 'react';
+import { SafeAreaView, Text, StyleSheet, StatusBar } from 'react-native';
+import LoginPage from './pages/LoginPage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomePage from './pages/HomePage';
+import PrivateChatPage from './pages/PrivateChatPage';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    // <SafeAreaView>
+
+    // <StatusBar
+    //   backgroundColor="#00BCD4"
+    //   barStyle="dark-content"
+    // />
+
+
+    // </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <StatusBar
+          backgroundColor="#00BCD4"
+          barStyle="dark-content"
+        />
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="LoginPage">
+          <Stack.Screen
+            name="LoginPage"
+            component={LoginPage}
+          />
+          <Stack.Screen
+            name="HomePage"
+            component={HomePage}
+          />
+          <Stack.Screen
+            name="PrivateChatPage"
+            component={PrivateChatPage}
+          />
+        </Stack.Navigator>
+      </SafeAreaView>
+    </NavigationContainer>
+
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 25,
+    fontWeight: '500',
   },
 });
+
+
